@@ -1,0 +1,21 @@
+﻿<h1>Manager</h1>
+
+
+<form role="form">
+    <div class="form-group">
+        <h3 for="name">Manage Name:</h3>
+        <input type="text" data-bind="value:data.UserData.Emp.Name" class="form-control">
+    </div>
+    <div class="form-group">
+        <h3 for="age">Manager Age:</h3>
+        <input type="text" data-bind="value:data.UserData.Emp.Age" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <h3 for="age">Manager Designation:</h3>
+        <input type="text" class="form-control" data-bind="value:data.UserData.Emp.Designation">
+    </div>
+    <button type="button" class="btn btn-default" data-bind="click:data.UserData.Emp.AddNewEmloyee">Add New Employee</button>
+    <button type="button" class="btn btn-default" data-bind="click:data.UserData.Emp.ViewReports">View Weekly Reports</button>
+    <button type="button" class="btn btn-default" data-bind="click:$root.Submit">Submit</button>
+</form>

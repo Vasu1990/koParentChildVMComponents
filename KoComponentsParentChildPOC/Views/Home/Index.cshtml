@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model Employee
+<h1>Fill the form</h1>
+<div class="container">
+    <div class="row">
+        <div id="wrapper">
+
+            <div data-bind="if:viewModel.Role() == 'Employee'">
+                <employee-register params="UserData:viewModel"></employee-register>
+            </div>
+
+            <div data-bind="if:viewModel.Role() == 'Manager'">
+                <div data-bind='component: {
+                    name: "manager-register",
+                    params: { UserData: viewModel }
+                }'></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<pre data-bind="text: ko.toJSON($data, null, 2)"></pre>
+
+@section scripts{
+
+
+<script src="~/Scripts/knockout-3.3.0.js"></script>
+<script src="~/Scripts/knockout.mapping-latest.js"></script>
+
+<script src="~/boot/require.config.js"></script>
+<script src="~/Scripts/require.js"></script>
+<script>
+    var viewModel = ko.mapping.fromJS(@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+    viewModel.Submit = function (data) {
+        console.log(data);
+        alert("form submitted");
+    }
+    ko.components.register('employee-register', {
+        require: '../koModules/EmployeeRegister/EmployeeRegisterForm.js'
+    });
+    ko.components.register('manager-register', {
+        require: '../koModules/ManagerRegister/ManagerRegisterForm.js'
+    });
+    ko.applyBindings(viewModel);
+
+   
+    
+  
+</script>
+    }
